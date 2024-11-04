@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+Layout/LineLength:
+  Max: 150
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'

@@ -1,0 +1,114 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+  description: API documentation for version 1 of our application
+paths:
+  "/home":
+    get:
+      summary: Displays a welcome message for authenticated users
+      tags:
+      - Home
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+        '401':
+          description: Unauthorized
+  "/signup":
+    post:
+      summary: Registers a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: User registered successfully
+        '422':
+          description: User couldn't be created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    name:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/login":
+    post:
+      summary: Logs in a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: User logged in successfully
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/logout":
+    delete:
+      summary: Logs out a user
+      tags:
+      - Users
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: User logged out successfully
+        '401':
+          description: Couldn't find an active session
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+      required:
+      - id
+      - email
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- bearerAuth: []
