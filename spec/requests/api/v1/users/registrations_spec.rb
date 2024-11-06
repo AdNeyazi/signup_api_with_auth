@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe 'User Registration', type: :request do
-  path '/signup' do
+  path '/api/v1/users/signup' do
     post 'Registers a new user' do
       tags 'Users'
       consumes 'application/json'
@@ -28,7 +28,7 @@ RSpec.describe 'User Registration', type: :request do
       context 'when the request is valid' do
         let(:user) { { user: { email: 'test@example.com', password: 'password123', name: 'Test User' } } }
 
-        response '200', 'User registered successfully' do
+        response '201', 'User registered successfully' do
           run_test!
         end
       end

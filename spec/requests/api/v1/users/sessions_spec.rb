@@ -7,7 +7,7 @@ require 'swagger_helper'
 # rubocop:disable Metrics/BlockLength
 RSpec.describe 'User Sessions', type: :request do
   describe 'Login' do
-    path '/login' do
+    path '/api/v1/users/login' do
       post 'Logs in a user' do
         tags 'Users'
         consumes 'application/json'
@@ -39,7 +39,7 @@ RSpec.describe 'User Sessions', type: :request do
   end
 
   describe 'Logout' do
-    path '/logout' do
+    path '/api/v1/users/logout' do
       delete 'Logs out a user' do
         tags 'Users'
         consumes 'application/json'
