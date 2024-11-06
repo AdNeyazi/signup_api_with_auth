@@ -5,19 +5,7 @@ info:
   version: v1
   description: API documentation for version 1 of our application
 paths:
-  "/home":
-    get:
-      summary: Displays a welcome message for authenticated users
-      tags:
-      - Home
-      security:
-      - bearerAuth: []
-      responses:
-        '200':
-          description: Access granted
-        '401':
-          description: Unauthorized
-  "/signup":
+  "/api/v1/users/signup":
     post:
       summary: Registers a new user
       tags:
@@ -46,7 +34,7 @@ paths:
                   required:
                   - email
                   - password
-  "/login":
+  "/api/v1/users/login":
     post:
       summary: Logs in a user
       tags:
@@ -73,7 +61,7 @@ paths:
                   required:
                   - email
                   - password
-  "/logout":
+  "/api/v1/users/logout":
     delete:
       summary: Logs out a user
       tags:
@@ -85,6 +73,18 @@ paths:
           description: User logged out successfully
         '401':
           description: Couldn't find an active session
+  "/home":
+    get:
+      summary: Displays a welcome message for authenticated users
+      tags:
+      - Home
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+        '401':
+          description: Unauthorized
 servers:
 - url: http://localhost:3000
   variables:
