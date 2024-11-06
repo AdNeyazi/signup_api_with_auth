@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   get 'home', to: 'home#index'
+  get 'saurabh', to: 'crypto#price'
   devise_for :users, path: '', path_names: {
                                  sign_in: 'login',
                                  sign_out: 'logout',
